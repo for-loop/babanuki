@@ -43,3 +43,17 @@ func TestNewDeckInitializesCardValuesWithIdenticalOrder(t *testing.T) {
 		t.Errorf("Expected %v, but got %v", deck1String, deck2String)
 	}
 }
+
+func TestNewDeckWithShuffleRandomizesOrder(t *testing.T) {
+	d1 := newDeck()
+	d2 := newDeck()
+
+	d2.shuffle()
+
+	deck1String := d1.toString()
+	deck2String := d2.toString()
+
+	if deck1String == deck2String {
+		t.Errorf("Expected %v, but got %v", deck1String, deck2String)
+	}
+}

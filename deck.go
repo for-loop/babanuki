@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 type deck []string
 
 func newDeck() deck {
@@ -14,4 +16,8 @@ func newDeck() deck {
 	d = append(d, "Joker")
 
 	return d
+}
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
 }

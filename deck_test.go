@@ -36,12 +36,10 @@ func TestNewDeckHasJokerAsTheLastCardValue(t *testing.T) {
 }
 
 func TestNewDeckInitializesCardValuesWithIdenticalOrder(t *testing.T) {
-	d1 := newDeck()
-	d2 := newDeck()
+	deck1String := newDeck().toString()
+	deck2String := newDeck().toString()
 
-	for i := range d1 {
-		if d1[i] != d2[i] {
-			t.Errorf("Expected %v at index %v, but got %v", d1[i], i, d2[i])
-		}
+	if deck1String != deck2String {
+		t.Errorf("Expected %v, but got %v", deck1String, deck2String)
 	}
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"strings"
 )
@@ -51,10 +52,15 @@ func throwPairs(d deck) deck {
 	var newDeck deck
 
 	for k, v := range counter {
-		if v % 2 == 1 {
+		if v%2 == 1 {
 			newDeck = append(newDeck, k)
 		}
 	}
 
 	return newDeck
+}
+
+func printStatus(d1 deck, d2 deck) {
+	fmt.Println("You have", len(d1), "cards")
+	fmt.Println("Com has ", len(d2), "cards")
 }

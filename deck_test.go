@@ -34,3 +34,14 @@ func TestNewDeckHasJokerAsTheLastCardValue(t *testing.T) {
 		t.Errorf("Expected %v as the first card value, but got %v", EXPECTED, actual)
 	}
 }
+
+func TestNewDeckInitializesCardValuesWithIdenticalOrder(t *testing.T) {
+	d1 := newDeck()
+	d2 := newDeck()
+
+	for i := range d1 {
+		if d1[i] != d2[i] {
+			t.Errorf("Expected %v at index %v, but got %v", d1[i], i, d2[i])
+		}
+	}
+}

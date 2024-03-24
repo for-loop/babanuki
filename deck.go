@@ -8,9 +8,7 @@ func newDeck() deck {
 	d := []string{}
 	
 	for i := 0; i < 4; i++ {
-		for _, cardValue := range cardValues {
-			d = append(d, cardValue)
-		}
+		d = append(d, cardValues...)
 	}
 
 	d = append(d, "Joker")

@@ -7,5 +7,9 @@ func main() {
 
 	deck.shuffle()
 
-	fmt.Println(deck)
+	yourHand, _ := deal(deck)
+
+	yourHand = throwPairs(yourHand)
+
+	fmt.Println(yourHand)
 }

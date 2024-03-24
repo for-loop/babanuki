@@ -35,3 +35,26 @@ func (d deck) shuffle() {
 func deal(d deck) (deck, deck) {
 	return d[:26], d[26:]
 }
+
+func throwPairs(d deck) deck {
+	counter := make(map[string]int)
+
+	for _, cardValue := range d {
+		_, exists := counter[cardValue]
+		if exists {
+			counter[cardValue]++
+		} else {
+			counter[cardValue] = 1
+		}
+	}
+
+	var newDeck deck
+
+	for k, v := range counter {
+		if v % 2 == 1 {
+			newDeck = append(newDeck, k)
+		}
+	}
+
+	return newDeck
+}

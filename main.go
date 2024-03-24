@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 	deck := newDeck()
 
@@ -13,6 +11,4 @@ func main() {
 	theirHand = throwPairs(theirHand)
 
 	printStatus(yourHand, theirHand)
-
-	fmt.Println(yourHand)
 }

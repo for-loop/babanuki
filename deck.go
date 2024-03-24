@@ -60,7 +60,7 @@ func throwPairs(d deck) deck {
 	return newDeck
 }
 
-func printStatus(d1 deck, d2 deck) {
-	fmt.Println("You have", len(d1), "cards")
-	fmt.Println("Com has ", len(d2), "cards")
+func printStatus(yourHand deck, theirHand deck) {
+	fmt.Println("Com has ", len(theirHand), "cards")
+	fmt.Println("You have", len(yourHand), "cards", yourHand)
 }

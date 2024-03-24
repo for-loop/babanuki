@@ -31,3 +31,7 @@ func (d deck) shuffle() {
 		d[i], d[j] = d[j], d[i]
 	}
 }
+
+func deal(d deck) (deck, deck) {
+	return d[:26], d[26:]
+}

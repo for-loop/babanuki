@@ -57,3 +57,22 @@ func TestNewDeckWithShuffleRandomizesOrder(t *testing.T) {
 		t.Errorf("Expected %v, but got %v", deck1String, deck2String)
 	}
 }
+
+func TestDealSplitsTheCardInto26And27Cards(t *testing.T) {
+	d := newDeck()
+
+	newDeck1, newDeck2 := deal(d)
+
+	const EXPECTED_LENGTH_Deck1 = 26
+	const EXPECTED_LENGTH_Deck2 = 27
+	actual1 := len(newDeck1)
+	actual2 := len(newDeck2)
+
+	if actual1 != EXPECTED_LENGTH_Deck1 {
+		t.Errorf("Expected %v cards to be in deck 1, but got %v", EXPECTED_LENGTH_Deck1, actual1)
+	}
+
+	if actual2 != EXPECTED_LENGTH_Deck2 {
+		t.Errorf("Expected %v cards to be in deck 1, but got %v", EXPECTED_LENGTH_Deck2, actual2)
+	}
+}

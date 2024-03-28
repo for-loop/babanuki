@@ -190,3 +190,28 @@ func TestTakeOutPanicsWhenIndexIsOutOfRange(t *testing.T) {
 
 	takeOut(10, d)
 }
+
+func TestContainsReturnsTrue(t *testing.T) {
+	const EXPECTED = true
+	const CARD_VALUE = "Two"
+	d := deck{"Ace", CARD_VALUE, "Three"}
+
+	actual := d.contains(CARD_VALUE)
+
+	if actual != EXPECTED {
+		t.Errorf("Expected the search result to be %v, but got %v", EXPECTED, actual)
+	}
+}
+
+func TestContainsReturnsFalse(t *testing.T) {
+	const EXPECTED = false
+	
+	const CARD_VALUE = "Joker"
+	d := deck{"Ace", "Two", "Three"}
+
+	actual := d.contains(CARD_VALUE)
+
+	if actual != EXPECTED {
+		t.Errorf("Expected the search result to be %v, but got %v", EXPECTED, actual)
+	}
+}

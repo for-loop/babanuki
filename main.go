@@ -20,4 +20,10 @@ func main() {
 
 	cardValue, _ := takeOut(i, theirHand)
 	fmt.Println("Pulled out", cardValue)
+
+	if yourHand.contains(cardValue) {
+		fmt.Println("You already have", cardValue)
+	} else {
+		fmt.Println("You don't have another", cardValue)
+	}
 }

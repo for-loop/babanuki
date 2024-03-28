@@ -90,3 +90,12 @@ func takeOut(i int, d deck) (string, deck) {
 
 	return cardValue, append(d[:i], d[i+1:]...)
 }
+
+func (d deck) contains(cardValue string) bool {
+	for _, c := range d {
+		if c == cardValue {
+			return true
+		}
+	}
+	return false
+}

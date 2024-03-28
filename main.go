@@ -13,10 +13,11 @@ func main() {
 	theirHand = throwPairs(theirHand)
 
 	printStatus(yourHand, theirHand)
-	i := promptPick(theirHand)
+	num := promptPick(theirHand)
+	i := num - 1
 
-	fmt.Println("You picked", theirHand[i-1])
+	fmt.Println("You picked", theirHand[i])
 
-	cardValue, _ := takeOut(i-1, theirHand)
+	cardValue, _ := takeOut(i, theirHand)
 	fmt.Println("Pulled out", cardValue)
 }

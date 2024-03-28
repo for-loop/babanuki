@@ -64,3 +64,19 @@ func printStatus(yourHand deck, theirHand deck) {
 	fmt.Println("Com has ", len(theirHand), "cards")
 	fmt.Println("You have", len(yourHand), "cards", yourHand)
 }
+
+func promptPick(d deck) int {
+	var i int
+
+	for {
+		fmt.Print("Pick an opponent's card 1-", len(d), " from the left: ")
+		_, err := fmt.Scanf("%v", &i)
+		if err != nil {
+			panic(err)
+		}
+		if 0 < i && i <= len(d) {
+			return i
+		}
+		fmt.Println("Invalid input. Try again.")
+	}
+}

@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	deck := newDeck()
 
@@ -11,4 +13,7 @@ func main() {
 	theirHand = throwPairs(theirHand)
 
 	printStatus(yourHand, theirHand)
+	i := promptPick(theirHand)
+
+	fmt.Println("You picked", theirHand[i-1])
 }

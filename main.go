@@ -16,4 +16,7 @@ func main() {
 	i := promptPick(theirHand)
 
 	fmt.Println("You picked", theirHand[i-1])
+
+	cardValue, _ := takeOut(i-1, theirHand)
+	fmt.Println("Pulled out", cardValue)
 }

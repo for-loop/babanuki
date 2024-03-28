@@ -80,3 +80,13 @@ func promptPick(d deck) int {
 		fmt.Println("Invalid input. Try again.")
 	}
 }
+
+func takeOut(i int, d deck) (string, deck) {
+	if i < 0 && len(d) <= i {
+		panic("Index out of range error")
+	}
+
+	cardValue := d[i]
+
+	return cardValue, append(d[:i], d[i+1:]...)
+}

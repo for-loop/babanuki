@@ -156,3 +156,37 @@ func TestThrowPairsReturnsANewDeckWithoutQuadrupledCardValues(t *testing.T) {
 		}
 	}
 }
+
+func TestTakeOutReturnsACardValueAndRemainingDeck(t *testing.T) {
+	const CARD_VALUE_TO_BE_TAKEN_OUT = "Ace"
+	const FIRST_REMAINING_CARD_VALUE = "Two"
+	const SECOND_REMAINING_CARD_VALUE = "Three"
+	const INDEX = 0
+	
+	d := deck{CARD_VALUE_TO_BE_TAKEN_OUT, FIRST_REMAINING_CARD_VALUE, SECOND_REMAINING_CARD_VALUE}
+
+	cardValue, d := takeOut(INDEX, d)
+
+	if cardValue != CARD_VALUE_TO_BE_TAKEN_OUT {
+		t.Errorf("Expected the card value to be %v, but got %v", CARD_VALUE_TO_BE_TAKEN_OUT, cardValue)
+	}
+
+	expected := d.toString()
+	actual := FIRST_REMAINING_CARD_VALUE + "," + SECOND_REMAINING_CARD_VALUE
+
+	if expected != actual {
+		t.Errorf("Expected the remaining deck to be %v, but got %v", expected, actual)
+	}
+}
+
+func TestTakeOutPanicsWhenIndexIsOutOfRange(t *testing.T) {
+	d := deck{"Ace"}
+
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+    }()
+
+	takeOut(10, d)
+}

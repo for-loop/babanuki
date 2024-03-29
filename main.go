@@ -23,6 +23,9 @@ func main() {
 
 	if yourHand.contains(cardValue) {
 		fmt.Println("You already have", cardValue)
+		yourHand := remove(cardValue, yourHand)
+		fmt.Println("Throw out", cardValue)
+		fmt.Println("Yours:", yourHand)
 	} else {
 		fmt.Println("You don't have another", cardValue)
 	}

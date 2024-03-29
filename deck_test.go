@@ -205,7 +205,7 @@ func TestContainsReturnsTrue(t *testing.T) {
 
 func TestContainsReturnsFalse(t *testing.T) {
 	const EXPECTED = false
-	
+
 	const CARD_VALUE = "Joker"
 	d := deck{"Ace", "Two", "Three"}
 
@@ -213,5 +213,33 @@ func TestContainsReturnsFalse(t *testing.T) {
 
 	if actual != EXPECTED {
 		t.Errorf("Expected the search result to be %v, but got %v", EXPECTED, actual)
+	}
+}
+
+func TestRemoveACardValueWhenCardValueExistsInADeck(t *testing.T) {
+	const FIRST_CARD_VALUE = "Ace"
+	const CARD_VALUE_TO_BE_REMOVED = "Two"
+	const THIRD_CARD_VALUE = "Three"
+	const EXPECTED = FIRST_CARD_VALUE + "," + THIRD_CARD_VALUE
+	
+	d := deck{FIRST_CARD_VALUE, CARD_VALUE_TO_BE_REMOVED, THIRD_CARD_VALUE}
+
+	actual := remove(CARD_VALUE_TO_BE_REMOVED, d)
+
+	if actual.toString() != EXPECTED {
+		t.Errorf("Expected %v, but got %v", EXPECTED, actual)
+	}
+}
+
+func TestRemoveDoesNothingWhenCardValueDoesNotExistInADeck(t *testing.T) {
+	d := deck{"Ace", "Two", "Three"}
+	expected := d.toString()
+
+	const CARD_VALUE = "Joker"
+
+	actual := remove(CARD_VALUE, d)
+
+	if actual.toString() != expected {
+		t.Errorf("Expected %v, but got %v", expected, actual)
 	}
 }

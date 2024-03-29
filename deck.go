@@ -99,3 +99,12 @@ func (d deck) contains(cardValue string) bool {
 	}
 	return false
 }
+
+func remove(cardValue string, d deck) deck {
+	for i, c := range d {
+		if c == cardValue {
+			return append(d[:i], d[i+1:]...)
+		}
+	}
+	return d
+}

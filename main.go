@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 func main() {
@@ -39,6 +40,8 @@ func main() {
 		if winnerExists(yourHand, theirHand) {
 			break
 		}
+
+		time.Sleep(1 * time.Second)
 
 		i = rand.Intn(len(yourHand))
 

@@ -29,5 +29,5 @@ func main() {
 		fmt.Println("You don't have another", cardValue)
 		yourHand = append(yourHand, cardValue)
 	}
-	fmt.Println("Yours:", yourHand)
+	printStatus(yourHand, theirHand)
 }

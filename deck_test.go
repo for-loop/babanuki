@@ -243,3 +243,40 @@ func TestRemoveDoesNothingWhenCardValueDoesNotExistInADeck(t *testing.T) {
 		t.Errorf("Expected %v, but got %v", expected, actual)
 	}
 }
+
+func TestWinnerExistsPanicsWhenTwoDecksAreEmpty(t *testing.T) {
+	d1 := deck{}
+	d2 := deck{}
+
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+    }()
+
+	winnerExists(d1, d2)
+}
+
+func TestWinnerExistsReturnsTrue(t *testing.T) {
+	d1 := deck{"Joker"}
+	d2 := deck{}
+
+	const EXPECTED = true
+	actual := winnerExists(d1, d2)
+
+	if (actual != EXPECTED) {
+		t.Errorf("Expected winner exists is %v, but got %v", actual, EXPECTED)
+	}
+}
+
+func TestWinnerExistsReturnsFalse(t *testing.T) {
+	d1 := deck{"Ace", "Joker"}
+	d2 := deck{"Ace"}
+
+	const EXPECTED = false
+	actual := winnerExists(d1, d2)
+
+	if (actual != EXPECTED) {
+		t.Errorf("Expected winner exists is %v, but got %v", actual, EXPECTED)
+	}
+}

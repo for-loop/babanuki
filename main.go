@@ -30,4 +30,5 @@ func main() {
 		yourHand = append(yourHand, cardValue)
 	}
 	printStatus(yourHand, theirHand)
+	winnerExists(yourHand, theirHand)
 }

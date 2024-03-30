@@ -127,19 +127,19 @@ func remove(cardValue string, d deck) deck {
 	return d
 }
 
-func winnerExists(d1 deck, d2 deck) bool {
-	n := len(d1)
-	m := len(d2)
+func winnerExists(yourHand deck, theirHand deck) bool {
+	numYours := len(yourHand)
+	numTheirs := len(theirHand)
 
-	if n == 0 && m == 0 {
+	if numYours == 0 && numTheirs == 0 {
 		panic("There cannot be more than one winner!")
 	}
 
-	if n == 0 {
+	if numYours == 0 {
 		fmt.Println("You won! 🎉")
 		return true
 	}
-	if m == 0 {
+	if numTheirs == 0 {
 		fmt.Println("Com won!")
 		return true
 	}

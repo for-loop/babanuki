@@ -40,8 +40,7 @@ func main() {
 			break
 		}
 
-		num = rand.Intn(len(yourHand))
-		i = num - 1
+		i = rand.Intn(len(yourHand))
 
 		cardValue, yourHand = takeOut(i, yourHand)
 		fmt.Println("Com took your", cardValue)

@@ -13,22 +13,30 @@ func main() {
 	theirHand = throwPairs(theirHand)
 
 	printStatus(yourHand, theirHand)
-	num := promptPick(theirHand)
-	i := num - 1
 
-	fmt.Println("You picked", theirHand[i])
+	cardValue := ""
 
-	cardValue, _ := takeOut(i, theirHand)
-	fmt.Println("Pulled out", cardValue)
+	for {
+		num := promptPick(theirHand)
+		i := num - 1
 
-	if yourHand.contains(cardValue) {
-		fmt.Println("You already have", cardValue)
-		yourHand = remove(cardValue, yourHand)
-		fmt.Println("Throw out", cardValue)
-	} else {
-		fmt.Println("You don't have another", cardValue)
-		yourHand = append(yourHand, cardValue)
+		fmt.Println("You picked", theirHand[i])
+
+		cardValue, theirHand = takeOut(i, theirHand)
+		fmt.Println("Pulled out", cardValue)
+
+		if yourHand.contains(cardValue) {
+			fmt.Println("You already have", cardValue)
+			yourHand = remove(cardValue, yourHand)
+			fmt.Println("Throw out", cardValue)
+		} else {
+			fmt.Println("You don't have another", cardValue)
+			yourHand = append(yourHand, cardValue)
+		}
+		printStatus(yourHand, theirHand)
+		
+		if winnerExists(yourHand, theirHand) {
+			break
+		}
 	}
-	printStatus(yourHand, theirHand)
-	winnerExists(yourHand, theirHand)
 }

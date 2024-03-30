@@ -117,11 +117,11 @@ func winnerExists(d1 deck, d2 deck) bool {
 		panic("There cannot be more than one winner!")
 	}
 
-	if (m == 0) {
+	if (n == 0) {
 		fmt.Println("You won! 🎉")
 		return true
 	}
-	if (n == 0) {
+	if (m == 0) {
 		fmt.Println("Com won!")
 		return true
 	}

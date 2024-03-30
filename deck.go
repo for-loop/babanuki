@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strconv"
 	"strings"
 )
 
@@ -61,8 +62,25 @@ func throwPairs(d deck) deck {
 }
 
 func printStatus(yourHand deck, theirHand deck) {
-	fmt.Println("Com has ", len(theirHand), "cards")
-	fmt.Println("You have", len(yourHand), "cards", yourHand)
+	numYours := len(yourHand)
+	numTheirs := len(theirHand)
+
+	theirStatus := "Com has  " + strconv.Itoa(numTheirs) + " card"
+	yourStatus := "You have " + strconv.Itoa(numYours) + " card"
+
+	if 1 < numTheirs {
+		fmt.Println(theirStatus + "s")
+	} else {
+		fmt.Println(theirStatus)
+	}
+
+	if 1 < numYours {
+		fmt.Println(yourStatus + "s", yourHand)
+	} else if numYours == 1 {
+		fmt.Println(yourStatus, yourHand)
+	} else {
+		fmt.Println(yourStatus)
+	}
 }
 
 func promptPick(d deck) int {
@@ -113,15 +131,15 @@ func winnerExists(d1 deck, d2 deck) bool {
 	n := len(d1)
 	m := len(d2)
 
-	if (n == 0 && m == 0) {
+	if n == 0 && m == 0 {
 		panic("There cannot be more than one winner!")
 	}
 
-	if (n == 0) {
+	if n == 0 {
 		fmt.Println("You won! 🎉")
 		return true
 	}
-	if (m == 0) {
+	if m == 0 {
 		fmt.Println("Com won!")
 		return true
 	}

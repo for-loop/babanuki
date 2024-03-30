@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func main() {
 	deck := newDeck()
@@ -20,21 +23,39 @@ func main() {
 		num := promptPick(theirHand)
 		i := num - 1
 
-		fmt.Println("You picked", theirHand[i])
-
 		cardValue, theirHand = takeOut(i, theirHand)
-		fmt.Println("Pulled out", cardValue)
+		fmt.Println("You picked Com's", cardValue)
 
 		if yourHand.contains(cardValue) {
 			fmt.Println("You already have", cardValue)
 			yourHand = remove(cardValue, yourHand)
-			fmt.Println("Throw out", cardValue)
+			fmt.Println("You throw out", cardValue)
 		} else {
-			fmt.Println("You don't have another", cardValue)
+			fmt.Println("You add", cardValue)
 			yourHand = append(yourHand, cardValue)
 		}
 		printStatus(yourHand, theirHand)
-		
+
+		if winnerExists(yourHand, theirHand) {
+			break
+		}
+
+		num = rand.Intn(len(yourHand))
+		i = num - 1
+
+		cardValue, yourHand = takeOut(i, yourHand)
+		fmt.Println("Com took your", cardValue)
+
+		if theirHand.contains(cardValue) {
+			fmt.Println("Com already has", cardValue)
+			theirHand = remove(cardValue, theirHand)
+			fmt.Println("Com throws out", cardValue)
+		} else {
+			fmt.Println("Com adds", cardValue)
+			theirHand = append(theirHand, cardValue)
+		}
+		printStatus(yourHand, theirHand)
+
 		if winnerExists(yourHand, theirHand) {
 			break
 		}

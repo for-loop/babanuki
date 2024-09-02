@@ -28,8 +28,14 @@ func (d deck) toString() string {
 }
 
 func (d deck) shuffle() {
+	n := len(d)
+	
+	if n <= 1 {
+		return
+	}
+
 	for i := range d {
-		j := rand.Intn(len(d) - 1)
+		j := rand.Intn(n - 1)
 		d[i], d[j] = d[j], d[i]
 	}
 }

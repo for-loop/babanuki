@@ -280,3 +280,27 @@ func TestWinnerExistsReturnsFalse(t *testing.T) {
 		t.Errorf("Expected winner exists is %v, but got %v", actual, EXPECTED)
 	}
 }
+
+func TestShuffleDoesNotPanicWhenDeckHasNoCard(t *testing.T) {
+	d := deck{}
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Errorf("The code panicked")
+		}
+    }()
+
+	d.shuffle()
+}
+
+func TestShuffleDoesNotPanicWhenDeckHasOneCard(t *testing.T) {
+	d := deck{"Ace"}
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Errorf("The code panicked")
+		}
+    }()
+
+	d.shuffle()
+}

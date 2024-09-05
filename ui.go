@@ -7,12 +7,15 @@ import (
 )
 
 func promptPick(numHand int) int {
-	var num int
+	if numHand < 1 {
+		panic("Number of hand must be a positive non-zero integer")
+	}
 
 	if numHand == 1 {
 		return 0
 	}
 
+	var num int
 	for {
 		fmt.Print("Pick an opponent's card 1-", numHand, " from the left: ")
 		_, err := fmt.Scanf("%v", &num)

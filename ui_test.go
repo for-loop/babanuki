@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-func TestPromptPickPanicsWhenNumHandIsZero(t *testing.T) {
+func TestPromptPickPanicsWhenNumOfCardsIsZero(t *testing.T) {
 	defer func() {
 		if r := recover(); r == nil {
 			t.Errorf("The code did not panic")
@@ -12,7 +12,7 @@ func TestPromptPickPanicsWhenNumHandIsZero(t *testing.T) {
 	promptPick(0)
 }
 
-func TestPromptPickPanicsWhenNumHandIsNegative(t *testing.T) {
+func TestPromptPickPanicsWhenNumOfCardsIsNegative(t *testing.T) {
 	defer func() {
 		if r := recover(); r == nil {
 			t.Errorf("The code did not panic")
@@ -22,11 +22,11 @@ func TestPromptPickPanicsWhenNumHandIsNegative(t *testing.T) {
 	promptPick(-1)
 }
 
-func TestPromptPickReturnsZero(t *testing.T) {
+func TestPromptPickReturnsZeroWhenNumOfCardsIsOne(t *testing.T) {
 	const EXPECTED = 0
-	const NUM_HAND = 1
+	const NUM_CARDS = 1
 
-	actual := promptPick(NUM_HAND)
+	actual := promptPick(NUM_CARDS)
 
 	if actual != EXPECTED {
 		t.Errorf("Expected index %v, but got %v", EXPECTED, actual)

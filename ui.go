@@ -6,33 +6,33 @@ import (
 	"strings"
 )
 
-func promptPick(numHand int) int {
-	if numHand < 1 {
+func promptPick(numCards int) int {
+	if numCards < 1 {
 		panic("Number of hand must be a positive non-zero integer")
 	}
 
-	if numHand == 1 {
+	if numCards == 1 {
 		return 0
 	}
 
 	var num int
 	for {
-		fmt.Print("Pick an opponent's card 1-", numHand, " from the left: ")
+		fmt.Print("Pick an opponent's card 1-", numCards, " from the left: ")
 		_, err := fmt.Scanf("%v", &num)
 		if err != nil {
 			panic(err)
 		}
-		if 0 < num && num <= numHand {
+		if 0 < num && num <= numCards {
 			return num - 1
 		}
 		fmt.Println("Invalid input. Try again.")
 	}
 }
 
-func promptShuffle(numHand int) bool {
+func promptShuffle(numCards int) bool {
 	var answer string
 
-	if numHand == 1 {
+	if numCards == 1 {
 		return false
 	}
 

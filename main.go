@@ -41,6 +41,12 @@ func main() {
 			break
 		}
 
+		if promptShuffle(yourHand) {
+			yourHand.shuffle()
+			fmt.Println("You shuffled your hand")
+			printStatus(yourHand, theirHand)
+		}
+
 		time.Sleep(1 * time.Second)
 
 		i = rand.Intn(len(yourHand))
@@ -60,6 +66,12 @@ func main() {
 
 		if winnerExists(yourHand, theirHand) {
 			break
+		}
+
+		if willShuffle(theirHand) {
+			theirHand.shuffle()
+			fmt.Println("Com shuffled its hand")
+			printStatus(yourHand, theirHand)
 		}
 	}
 }

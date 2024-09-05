@@ -8,7 +8,7 @@ import (
 
 func promptPick(numCards int) int {
 	if numCards < 1 {
-		panic("Number of hand must be a positive non-zero integer")
+		panic("Number of cards must be a positive non-zero integer")
 	}
 
 	if numCards == 1 {
@@ -30,12 +30,15 @@ func promptPick(numCards int) int {
 }
 
 func promptShuffle(numCards int) bool {
-	var answer string
+	if numCards < 1 {
+		panic("Number of cards must be a positive non-zero integer")
+	}
 
 	if numCards == 1 {
 		return false
 	}
 
+	var answer string
 	for {
 		fmt.Print("Do you want to shuffle? (y/n) ")
 		_, err := fmt.Scanf("%v", &answer)

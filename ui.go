@@ -6,20 +6,20 @@ import (
 	"strings"
 )
 
-func promptPick(d deck) int {
+func promptPick(numHand int) int {
 	var num int
 
-	if len(d) == 1 {
+	if numHand == 1 {
 		return 0
 	}
 
 	for {
-		fmt.Print("Pick an opponent's card 1-", len(d), " from the left: ")
+		fmt.Print("Pick an opponent's card 1-", numHand, " from the left: ")
 		_, err := fmt.Scanf("%v", &num)
 		if err != nil {
 			panic(err)
 		}
-		if 0 < num && num <= len(d) {
+		if 0 < num && num <= numHand {
 			return num - 1
 		}
 		fmt.Println("Invalid input. Try again.")

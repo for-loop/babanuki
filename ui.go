@@ -26,10 +26,10 @@ func promptPick(numHand int) int {
 	}
 }
 
-func promptShuffle(d deck) bool {
+func promptShuffle(numHand int) bool {
 	var answer string
 
-	if len(d) == 1 {
+	if numHand == 1 {
 		return false
 	}
 

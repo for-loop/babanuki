@@ -40,7 +40,7 @@ func main() {
 			break
 		}
 
-		if promptShuffle(yourHand) {
+		if promptShuffle(len(yourHand)) {
 			yourHand.shuffle()
 			fmt.Println("You shuffled your hand")
 			printStatus(yourHand, theirHand)

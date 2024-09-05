@@ -89,22 +89,6 @@ func printStatus(yourHand deck, theirHand deck) {
 	}
 }
 
-func promptPick(d deck) int {
-	var num int
-
-	for {
-		fmt.Print("Pick an opponent's card 1-", len(d), " from the left: ")
-		_, err := fmt.Scanf("%v", &num)
-		if err != nil {
-			panic(err)
-		}
-		if 0 < num && num <= len(d) {
-			return num
-		}
-		fmt.Println("Invalid input. Try again.")
-	}
-}
-
 func takeOut(i int, d deck) (string, deck) {
 	if i < 0 && len(d) <= i {
 		panic("Index out of range error")

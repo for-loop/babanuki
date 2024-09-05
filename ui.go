@@ -6,6 +6,22 @@ import (
 	"strings"
 )
 
+func promptPick(d deck) int {
+	var num int
+
+	for {
+		fmt.Print("Pick an opponent's card 1-", len(d), " from the left: ")
+		_, err := fmt.Scanf("%v", &num)
+		if err != nil {
+			panic(err)
+		}
+		if 0 < num && num <= len(d) {
+			return num
+		}
+		fmt.Println("Invalid input. Try again.")
+	}
+}
+
 func promptShuffle(d deck) bool {
 	var answer string
 

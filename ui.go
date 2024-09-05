@@ -9,6 +9,10 @@ import (
 func promptPick(d deck) int {
 	var num int
 
+	if len(d) == 1 {
+		return 0
+	}
+
 	for {
 		fmt.Print("Pick an opponent's card 1-", len(d), " from the left: ")
 		_, err := fmt.Scanf("%v", &num)
@@ -16,7 +20,7 @@ func promptPick(d deck) int {
 			panic(err)
 		}
 		if 0 < num && num <= len(d) {
-			return num
+			return num - 1
 		}
 		fmt.Println("Invalid input. Try again.")
 	}

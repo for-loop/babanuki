@@ -21,8 +21,7 @@ func main() {
 	cardValue := ""
 
 	for {
-		num := promptPick(theirHand)
-		i := num - 1
+		i := promptPick(theirHand)
 
 		cardValue, theirHand = takeOut(i, theirHand)
 		fmt.Println("You picked Com's", cardValue)

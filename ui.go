@@ -74,12 +74,12 @@ func willShuffle(numCards int) bool {
 	return false
 }
 
-func printStatus(yourHand deck, theirHand deck) {
-	numYours := len(yourHand)
-	numTheirs := len(theirHand)
+func printStatus(your player, their player) {
+	numYours := len(your.hand)
+	numTheirs := len(their.hand)
 
-	theirStatus := "Com has  " + strconv.Itoa(numTheirs) + " card"
-	yourStatus := "You have " + strconv.Itoa(numYours) + " card"
+	theirStatus := their.name + " has  " + strconv.Itoa(numTheirs) + " card"
+	yourStatus := your.name + " have " + strconv.Itoa(numYours) + " card"
 
 	if 1 < numTheirs {
 		fmt.Println(theirStatus + "s")
@@ -88,9 +88,9 @@ func printStatus(yourHand deck, theirHand deck) {
 	}
 
 	if 1 < numYours {
-		fmt.Println(yourStatus + "s", yourHand)
+		fmt.Println(yourStatus + "s", your.hand)
 	} else if numYours == 1 {
-		fmt.Println(yourStatus, yourHand)
+		fmt.Println(yourStatus, your.hand)
 	} else {
 		fmt.Println(yourStatus)
 	}

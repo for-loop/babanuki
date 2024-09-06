@@ -16,7 +16,7 @@ func main() {
 	your.hand = throwPairs(your.hand)
 	their.hand = throwPairs(their.hand)
 
-	printStatus(your.hand, their.hand)
+	printStatus(your, their)
 
 	cardValue := ""
 
@@ -34,7 +34,7 @@ func main() {
 			fmt.Println("You add", cardValue)
 			your.hand = append(your.hand, cardValue)
 		}
-		printStatus(your.hand, their.hand)
+		printStatus(your, their)
 
 		if winnerExists(your.hand, their.hand) {
 			break
@@ -43,7 +43,7 @@ func main() {
 		if promptShuffle(len(your.hand)) {
 			your.hand.shuffle()
 			fmt.Println("You shuffled your hand")
-			printStatus(your.hand, their.hand)
+			printStatus(your, their)
 		}
 
 		time.Sleep(1 * time.Second)
@@ -61,7 +61,7 @@ func main() {
 			fmt.Println("Com adds", cardValue)
 			their.hand = append(their.hand, cardValue)
 		}
-		printStatus(your.hand, their.hand)
+		printStatus(your, their)
 
 		if winnerExists(your.hand, their.hand) {
 			break
@@ -70,7 +70,7 @@ func main() {
 		if willShuffle(len(their.hand)) {
 			their.hand.shuffle()
 			fmt.Println("Com shuffled its hand")
-			printStatus(your.hand, their.hand)
+			printStatus(your, their)
 		}
 	}
 }

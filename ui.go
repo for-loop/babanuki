@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strconv"
 	"strings"
 )
 
@@ -71,4 +72,26 @@ func willShuffle(numCards int) bool {
 	}
 
 	return false
+}
+
+func printStatus(yourHand deck, theirHand deck) {
+	numYours := len(yourHand)
+	numTheirs := len(theirHand)
+
+	theirStatus := "Com has  " + strconv.Itoa(numTheirs) + " card"
+	yourStatus := "You have " + strconv.Itoa(numYours) + " card"
+
+	if 1 < numTheirs {
+		fmt.Println(theirStatus + "s")
+	} else {
+		fmt.Println(theirStatus)
+	}
+
+	if 1 < numYours {
+		fmt.Println(yourStatus + "s", yourHand)
+	} else if numYours == 1 {
+		fmt.Println(yourStatus, yourHand)
+	} else {
+		fmt.Println(yourStatus)
+	}
 }

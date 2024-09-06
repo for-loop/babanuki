@@ -63,3 +63,34 @@ func TestPromptShuffleReturnsZeroWhenNumOfCardsIsOne(t *testing.T) {
 		t.Errorf("Expected %v, but got %v", EXPECTED, actual)
 	}
 }
+
+func TestWillShufflePanicsWhenNumOfCardsIsZero(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+    }()
+
+	willShuffle(0)
+}
+
+func TestWillShufflePanicsWhenNumOfCardsIsNegative(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+    }()
+
+	willShuffle(-1)
+}
+
+func TestWillShuffleReturnsZeroWhenNumOfCardsIsOne(t *testing.T) {
+	const EXPECTED = false
+	const NUM_CARDS = 1
+
+	actual := willShuffle(NUM_CARDS)
+
+	if actual != EXPECTED {
+		t.Errorf("Expected %v, but got %v", EXPECTED, actual)
+	}
+}

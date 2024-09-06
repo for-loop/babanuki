@@ -57,8 +57,12 @@ func promptShuffle(numCards int) bool {
 	}
 }
 
-func willShuffle(d deck) bool {
-	if len(d) == 1 {
+func willShuffle(numCards int) bool {
+	if numCards < 1 {
+		panic("Number of cards must be a positive non-zero integer")
+	}
+	
+	if numCards == 1 {
 		return false
 	}
 

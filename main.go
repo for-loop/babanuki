@@ -67,7 +67,7 @@ func main() {
 			break
 		}
 
-		if willShuffle(theirHand) {
+		if willShuffle(len(theirHand)) {
 			theirHand.shuffle()
 			fmt.Println("Com shuffled its hand")
 			printStatus(yourHand, theirHand)

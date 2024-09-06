@@ -9,6 +9,11 @@ import (
 
 type deck []string
 
+type player struct {
+	name string
+	hand deck
+}
+
 func newDeck() deck {
 	cardValues := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
 
@@ -40,8 +45,16 @@ func (d deck) shuffle() {
 	}
 }
 
-func deal(d deck) (deck, deck) {
-	return d[:26], d[26:]
+func deal(d deck) (player, player) {
+	var you player
+	you.name = "You"
+	you.hand = d[:26]
+	
+	var com player
+	com.name = "Com"
+	com.hand = d[26:]
+
+	return you, com
 }
 
 func throwPairs(d deck) deck {

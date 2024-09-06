@@ -11,66 +11,66 @@ func main() {
 
 	deck.shuffle()
 
-	yourHand, theirHand := deal(deck)
+	your, their := deal(deck)
 
-	yourHand = throwPairs(yourHand)
-	theirHand = throwPairs(theirHand)
+	your.hand = throwPairs(your.hand)
+	their.hand = throwPairs(their.hand)
 
-	printStatus(yourHand, theirHand)
+	printStatus(your.hand, their.hand)
 
 	cardValue := ""
 
 	for {
-		i := promptPick(len(theirHand))
+		i := promptPick(len(their.hand))
 
-		cardValue, theirHand = takeOut(i, theirHand)
+		cardValue, their.hand = takeOut(i, their.hand)
 		fmt.Println("You picked Com's", cardValue)
 
-		if yourHand.contains(cardValue) {
+		if your.hand.contains(cardValue) {
 			fmt.Println("You already have", cardValue)
-			yourHand = remove(cardValue, yourHand)
+			your.hand = remove(cardValue, your.hand)
 			fmt.Println("You throw out", cardValue)
 		} else {
 			fmt.Println("You add", cardValue)
-			yourHand = append(yourHand, cardValue)
+			your.hand = append(your.hand, cardValue)
 		}
-		printStatus(yourHand, theirHand)
+		printStatus(your.hand, their.hand)
 
-		if winnerExists(yourHand, theirHand) {
+		if winnerExists(your.hand, their.hand) {
 			break
 		}
 
-		if promptShuffle(len(yourHand)) {
-			yourHand.shuffle()
+		if promptShuffle(len(your.hand)) {
+			your.hand.shuffle()
 			fmt.Println("You shuffled your hand")
-			printStatus(yourHand, theirHand)
+			printStatus(your.hand, their.hand)
 		}
 
 		time.Sleep(1 * time.Second)
 
-		i = rand.Intn(len(yourHand))
+		i = rand.Intn(len(your.hand))
 
-		cardValue, yourHand = takeOut(i, yourHand)
+		cardValue, your.hand = takeOut(i, your.hand)
 		fmt.Println("Com took your", cardValue)
 
-		if theirHand.contains(cardValue) {
+		if their.hand.contains(cardValue) {
 			fmt.Println("Com already has", cardValue)
-			theirHand = remove(cardValue, theirHand)
+			their.hand = remove(cardValue, their.hand)
 			fmt.Println("Com throws out", cardValue)
 		} else {
 			fmt.Println("Com adds", cardValue)
-			theirHand = append(theirHand, cardValue)
+			their.hand = append(their.hand, cardValue)
 		}
-		printStatus(yourHand, theirHand)
+		printStatus(your.hand, their.hand)
 
-		if winnerExists(yourHand, theirHand) {
+		if winnerExists(your.hand, their.hand) {
 			break
 		}
 
-		if willShuffle(len(theirHand)) {
-			theirHand.shuffle()
+		if willShuffle(len(their.hand)) {
+			their.hand.shuffle()
 			fmt.Println("Com shuffled its hand")
-			printStatus(yourHand, theirHand)
+			printStatus(your.hand, their.hand)
 		}
 	}
 }

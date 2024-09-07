@@ -46,14 +46,14 @@ func promptShuffle(numCards int) bool {
 		if err != nil {
 			panic(err)
 		}
-		
+
 		answerLower := strings.ToLower(answer)
 		if answerLower == "y" {
 			return true
 		} else if answerLower == "n" {
 			return false
 		}
-		
+
 		fmt.Println("Invalid input. Try again.")
 	}
 }
@@ -62,7 +62,7 @@ func willShuffle(numCards int) bool {
 	if numCards < 1 {
 		panic("Number of cards must be a positive non-zero integer")
 	}
-	
+
 	if numCards == 1 {
 		return false
 	}
@@ -75,23 +75,33 @@ func willShuffle(numCards int) bool {
 }
 
 func printStatus(your player, their player) {
-	numYours := len(your.hand)
-	numTheirs := len(their.hand)
+	theirStatus := formatStatus(their)
+	yourStatus := formatStatus(your)
 
-	theirStatus := their.name + " has  " + strconv.Itoa(numTheirs) + " card"
-	yourStatus := your.name + " have " + strconv.Itoa(numYours) + " card"
+	fmt.Println(theirStatus)
 
-	if 1 < numTheirs {
-		fmt.Println(theirStatus + "s")
-	} else {
-		fmt.Println(theirStatus)
-	}
-
-	if 1 < numYours {
-		fmt.Println(yourStatus + "s", your.hand)
-	} else if numYours == 1 {
-		fmt.Println(yourStatus, your.hand)
-	} else {
+	if len(your.hand) == 0 {
 		fmt.Println(yourStatus)
+	} else {
+		fmt.Println(yourStatus, your.hand)
 	}
+}
+
+func formatStatus(player player) string {
+	status := player.name
+
+	if player.thirdPerson {
+		status += " has "
+	} else {
+		status += " have "
+	}
+
+	numCards := len(player.hand)
+	status += strconv.Itoa(numCards) + " card"
+
+	if 1 < numCards {
+		status += "s"
+	}
+
+	return status
 }

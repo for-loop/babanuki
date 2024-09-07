@@ -94,3 +94,87 @@ func TestWillShuffleReturnsZeroWhenNumOfCardsIsOne(t *testing.T) {
 		t.Errorf("Expected %v, but got %v", EXPECTED, actual)
 	}
 }
+
+func TestFormatStatusCorrectlyWhenPlayerWithFirstPersonNameHasNoCard(t *testing.T) {
+	var player player
+	player.name = "I"
+	player.thirdPerson = false
+	player.hand = []string{}
+	expected := player.name + " have 0 card"
+
+	actual := formatStatus(player)
+
+	if actual != expected {
+		t.Errorf("Expected '%v', but got '%v'", expected, actual)		
+	}
+}
+
+func TestFormatStatusCorrectlyWhenPlayerWithThirdPersonNameHasNoCard(t *testing.T) {
+	var player player
+	player.name = "User"
+	player.thirdPerson = true
+	player.hand = []string{}
+	expected := player.name + " has 0 card"
+
+	actual := formatStatus(player)
+
+	if actual != expected {
+		t.Errorf("Expected '%v', but got '%v'", expected, actual)		
+	}
+}
+
+func TestFormatStatusCorrectlyWhenPlayerWithFirstPersonNameHasOneCard(t *testing.T) {
+	var player player
+	player.name = "I"
+	player.thirdPerson = false
+	player.hand = []string{"Ace"}
+	expected := player.name + " have 1 card"
+
+	actual := formatStatus(player)
+
+	if actual != expected {
+		t.Errorf("Expected '%v', but got '%v'", expected, actual)		
+	}
+}
+
+func TestFormatStatusCorrectlyWhenPlayerWithThirdPersonNameHasOneCard(t *testing.T) {
+	var player player
+	player.name = "User"
+	player.thirdPerson = true
+	player.hand = []string{"Ace"}
+	expected := player.name + " has 1 card"
+
+	actual := formatStatus(player)
+
+	if actual != expected {
+		t.Errorf("Expected '%v', but got '%v'", expected, actual)		
+	}
+}
+
+func TestFormatStatusCorrectlyWhenPlayerWithFirstPersonNameHasTwoCards(t *testing.T) {
+	var player player
+	player.name = "I"
+	player.thirdPerson = false
+	player.hand = []string{"Ace", "Two"}
+	expected := player.name + " have 2 cards"
+
+	actual := formatStatus(player)
+
+	if actual != expected {
+		t.Errorf("Expected '%v', but got '%v'", expected, actual)		
+	}
+}
+
+func TestFormatStatusCorrectlyWhenPlayerWithThirdPersonNameHasTwoCards(t *testing.T) {
+	var player player
+	player.name = "User"
+	player.thirdPerson = true
+	player.hand = []string{"Ace", "Two"}
+	expected := player.name + " has 2 cards"
+
+	actual := formatStatus(player)
+
+	if actual != expected {
+		t.Errorf("Expected '%v', but got '%v'", expected, actual)		
+	}
+}

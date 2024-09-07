@@ -9,8 +9,9 @@ import (
 type deck []string
 
 type player struct {
-	name string
-	hand deck
+	name        string
+	thirdPerson bool
+	hand        deck
 }
 
 func newDeck() deck {
@@ -33,7 +34,7 @@ func (d deck) toString() string {
 
 func (d deck) shuffle() {
 	n := len(d)
-	
+
 	if n <= 1 {
 		return
 	}
@@ -47,10 +48,12 @@ func (d deck) shuffle() {
 func deal(d deck) (player, player) {
 	var you player
 	you.name = "You"
+	you.thirdPerson = false
 	you.hand = d[:26]
-	
+
 	var com player
 	com.name = "Com"
+	com.thirdPerson = true
 	com.hand = d[26:]
 
 	return you, com
